@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            background: linear-gradient(
+                to left,
+                rgb(122, 110, 90),
+                rgb(236, 211, 168)
+            );
+        }
+        .container {
+            margin-top: 8%;
+            position: relative;
+            left: 40%;
+            border: 8px solid blue;
+            border-radius: 10px;
+            width: 24%;
+            height: 241px;
+        }
+         .container2 {
+            border: 5px solid blue;
+            width: 97%;
+            height: 233px;
+        } 
+        #input {
+            border: 2px solid gray;
+            width: 244px;
+            height: 40px;
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+            background-color: black;
+        }
+        .buttons-wrapper{
+            border: 3px solid gray;
+            height: 183px;
+            background-color: gray;
+        }
+        .arithmetics {
+            height: 37px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .arit {
+            border: 1px solid gray;
+            width: 60px;
+            height: 35px;
+            margin: 1px;
+            text-align: center;
+            background-color: rgb(255, 243, 243);
+            position: relative;
+            font-weight: bold;
+            font-size: 25px;           
+        }
+        #arit{
+            background-color:rgb(219, 193, 193);
+            margin: 1px;
+        }
+        #arit:active {
+            background-color: rgb(107, 64, 64);
+        }
+        .arit:active {
+            background-color: rgb(107, 64, 64);
+            transition: ease-in-out;
+            
+        }
+        .equals-to {
+            height: 146px;
+            background-color: rgb(235, 174, 62);
+        }
+        .five {
+            position: relative;
+            right: 30px;
+        }
+        .six {
+            position: relative;
+            right: 61px;
+        }
+        h1 {
+            font-style: normal;
+            font-weight: bold;
+            color: brown;
+            font-size: 40px;
+            text-decoration: underline;
+            text-decoration-color: rgb(56, 55, 52);
+        }
+
+        @media screen and (max-width: 390px) {
+            .container{
+                left: 14%;
+            }
+        }
+        @media screen and (max-width: 414px) {
+            .container{
+                left: 14%;
+            }
+        }
+        @media screen and (max-width: 280px) {
+            .container{
+                left: 0%;
+                width:80%;
+            }
+            #input {
+                width: 96%;
+            }
+            .six {
+                right: 49px;
+                width: 24%;
+            }
+            .five {
+                width: 24%;
+                margin-left: 13px;
+            }
+            .four {
+                width: 24%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Calculator by Priest
+    </h1>
+     <div class="container"> 
+        <div class="container2">
+            <input type="text" id="input" readonly>
+            <div class="buttons-wrapper">
+                <div  class="arithmetics">
+                    <button class="arit" id="arit" onclick="number('+')" >+</button>
+                    <button class="arit" id="arit" onclick="number('-')" >-</button>
+                    <button class="arit" id="arit" onclick="number('*')">x</button>
+                          <button class="arit" id="arit" onclick="number('/')">/</button>
+                </div>
+                <div class="arithmetics">
+                    <button class="arit" onclick="number('7')">7</button>
+                    <button class="arit" onclick="number('8')">8</button>
+                    <button class="arit" onclick="number('9')">9</button>
+                    <button class="arit equals-to" onclick="calculate()">=</button>
+                </div>
+                 <div class="arithmetics">
+                    <button class="arit four" onclick="number('4')">4</button>
+                    <button class="arit five" onclick="number('5')">5</button>
+                    <button class="arit six" onclick="number('6')">6</button>                   
+                </div>
+                <div class="arithmetics">
+                    <button class="arit four" onclick="number('1')">1</button>
+                    <button class="arit five" onclick="number('2')">2</button>
+                    <button class="arit six" onclick="number('3')">3</button>  
+                </div>
+                <div class="arithmetics">
+                    <button class="arit four" onclick="number('0')">0</button>
+                    <button class="arit five" onclick="number('.')">.</button>
+                    <button class="arit six" onclick="clearResult()">C</button>
+                </div>                  
+            </div>
+        </div>
+    </div>
+    <script>
+        let result = document.getElementById("input")
+        let calculator =  "";
+        let isCalculated = false;
+
+        function number(value) {
+            calculator = isCalculated ? value : `${calculator}${value}`;
+            result.value = calculator;
+            isCalculated = false;
+        }
+        function calculate() {
+            try {
+                calculator = eval(calculator);
+                result.value = calculator;
+                isCalculated = true;
+            } catch(error) {
+                result.value = "Syntax Error";
+                isCalculated = true;
+            }
+        }
+        function clearResult() {
+            calculator = '';
+            result.value = '';
+        }
+    </script>
+</body>
+</html>
